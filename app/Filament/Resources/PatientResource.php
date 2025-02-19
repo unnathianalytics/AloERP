@@ -62,7 +62,7 @@ class PatientResource extends Resource
                             ->numeric(),
                     ])
                     ->columns(3),
-                Section::make('Other Indo')
+                Section::make('Other Informations')
                     ->schema([
                         TextInput::make('address'),
                         TextInput::make('gender'),
@@ -70,6 +70,8 @@ class PatientResource extends Resource
                             ->native(false),
                         TextInput::make('occupation'),
                         FileUpload::make('image')
+                            ->image()
+                            ->imageEditor()
                             ->columnSpanFull(),
                     ])
                     ->columns(4)
