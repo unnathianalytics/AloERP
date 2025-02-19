@@ -35,6 +35,7 @@ class PatientResource extends Resource
     }
 
 
+
     public static function getGloballySearchableAttributes(): array
     {
         return ['name', 'op_number', 'mobile', 'occupation', 'complaints.case_detail', 'complaints.medication', 'complaints.lab_reports', 'complaints.case_no'];
@@ -100,6 +101,10 @@ class PatientResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+            ])
+            ->headerActions([
+                Tables\Actions\CreateAction::make(),
+                Tables\Actions\DeleteAction::make()->hidden(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
