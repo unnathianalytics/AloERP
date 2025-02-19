@@ -102,10 +102,6 @@ class PatientResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
-            ->headerActions([
-                Tables\Actions\CreateAction::make(),
-                Tables\Actions\DeleteAction::make()->hidden(),
-            ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
