@@ -100,7 +100,8 @@ class PatientResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->label('Complaint'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
