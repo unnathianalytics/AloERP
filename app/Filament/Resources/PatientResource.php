@@ -26,7 +26,7 @@ class PatientResource extends Resource
     protected static ?string $recordTitleAttribute = 'name';
     public static function getGlobalSearchResultTitle(Model $record) : string
     {
-        return "{$record->name} :: {$record->op_number}";
+        return "{$record->name}/{$record->mobile} :: {$record->op_number}";
     }
     public static function getGloballySearchableAttributes() : array
     {
