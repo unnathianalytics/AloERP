@@ -26,7 +26,7 @@ class PatientResource extends Resource
     protected static ?string $recordTitleAttribute = 'name';
     public static function getGlobalSearchResultTitle(Model $record) : string
     {
-        return $record->name . ' :: ' . $record->op_number;
+        return "{$record->name} :: {$record->op_number}";
     }
     public static function getGloballySearchableAttributes() : array
     {
@@ -40,7 +40,8 @@ class PatientResource extends Resource
                     ->schema([
                         TextInput::make('op_number')
                             ->default(
-                                fn(Patient $patient) => $patient->newOpNumber())
+                                fn(Patient $patient) => $patient->newOpNumber()
+                            )
                             ->readOnly(),
                         TextInput::make('name')
                             ->required(),
