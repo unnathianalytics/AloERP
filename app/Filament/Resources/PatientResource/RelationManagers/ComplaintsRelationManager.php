@@ -25,31 +25,33 @@ class ComplaintsRelationManager extends RelationManager
 
     public function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                TextInput::make('case_no')
-                    ->default(fn() => Complaint::newCaseNumber())
-                    ->readOnly()
-                    ->required(),
-                DatePicker::make('case_date')
-                    ->native(false)
-                    ->default(Carbon::now())
-                    ->minDate(Carbon::now()->subDays(7))
-                    ->maxDate(Carbon::now())
-                    ->required(),
-                Textarea::make('case_detail')
-                    ->required()
-                    ->rows(3),
-                Textarea::make('medication')
-                    ->rows(3),
-                Textarea::make('lab_reports')
-                    ->rows(3),
-                FileUpload::make('uploads')
-                    ->maxFiles(5)
-                    ->multiple()
-                    ->downloadable()
-            ]);
+        $now = Carbon::now();
+        $minDate = $now->copy()->subDays(7);
+        return $form->schema([
+            TextInput::make('case_no')
+                ->default(fn () => Complaint::newCaseNumber())
+                ->readOnly()
+                ->required(),
+            DatePicker::make('case_date')
+                ->native(false)
+                ->default($now)
+                ->minDate($minDate)
+                ->maxDate($now)
+                ->required(),
+            Textarea::make('case_detail')
+                ->required()
+                ->rows(3),
+            Textarea::make('medication')
+                ->rows(3),
+            Textarea::make('lab_reports')
+                ->rows(3),
+            FileUpload::make('uploads')
+                ->multiple()
+                ->maxFiles(5)
+                ->downloadable(),
+        ]);
     }
+    
 
     public function table(Table $table): Table
     {
